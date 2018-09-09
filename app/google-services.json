@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "245529236031",
+    "firebase_url": "https://rewise-85c6d.firebaseio.com",
+    "project_id": "rewise-85c6d",
+    "storage_bucket": "rewise-85c6d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245529236031:android:da515c83af710371",
+        "android_client_info": {
+          "package_name": "re.wise.mananwason.rewise"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245529236031-9gi7910s55kr3k4r517hpcel82t21arj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkUg6p-mr3qvpmtx1gx6zuRkD_iasZlW4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
