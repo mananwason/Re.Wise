@@ -55,6 +55,7 @@ public final class StillImageActivity extends AppCompatActivity {
     private static final int REQUEST_CHOOSE_IMAGE = 1002;
 
     private Button getImageButton;
+    private Button answer_que;
     private ImageView preview;
     private GraphicOverlay graphicOverlay;
     private String selectedMode = CLOUD_LABEL_DETECTION;
@@ -75,7 +76,13 @@ public final class StillImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_still_image);
-
+        answer_que = (Button) findViewById(R.id.answer);
+        answer_que.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StillImageActivity.this, QuestionActivity.class));
+            }
+        });
         getImageButton = (Button) findViewById(R.id.getImageButton);
         getImageButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -114,8 +121,6 @@ public final class StillImageActivity extends AppCompatActivity {
             Log.d(TAG, "graphicOverlay is null");
         }
 
-        populateFeatureSelector();
-        populateSizeSelector();
 
         createImageProcessor();
 
@@ -134,62 +139,7 @@ public final class StillImageActivity extends AppCompatActivity {
         }
     }
 
-    private void populateFeatureSelector() {
-        Spinner featureSpinner = (Spinner) findViewById(R.id.featureSelector);
-        List<String> options = new ArrayList<>();
-        options.add(CLOUD_LABEL_DETECTION);
-        options.add(CLOUD_LANDMARK_DETECTION);
-        options.add(CLOUD_TEXT_DETECTION);
-        options.add(CLOUD_DOCUMENT_TEXT_DETECTION);
-        // Creating adapter for featureSpinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.spinner_style, options);
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // attaching data adapter to spinner
-        featureSpinner.setAdapter(dataAdapter);
-        featureSpinner.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
 
-                    @Override
-                    public void onItemSelected(
-                            AdapterView<?> parentView, View selectedItemView, int pos, long id) {
-                        selectedMode = parentView.getItemAtPosition(pos).toString();
-                        createImageProcessor();
-                        tryReloadAndDetectInImage();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> arg0) {}
-                });
-    }
-
-    private void populateSizeSelector() {
-        Spinner sizeSpinner = (Spinner) findViewById(R.id.sizeSelector);
-        List<String> options = new ArrayList<>();
-        options.add(SIZE_PREVIEW);
-        options.add(SIZE_1024_768);
-        options.add(SIZE_640_480);
-
-        // Creating adapter for featureSpinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.spinner_style, options);
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // attaching data adapter to spinner
-        sizeSpinner.setAdapter(dataAdapter);
-        sizeSpinner.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
-
-                    @Override
-                    public void onItemSelected(
-                            AdapterView<?> parentView, View selectedItemView, int pos, long id) {
-                        selectedSize = parentView.getItemAtPosition(pos).toString();
-                        tryReloadAndDetectInImage();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> arg0) {}
-                });
-    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {

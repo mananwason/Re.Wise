@@ -38,6 +38,8 @@ public class CloudTextRecognitionProcessor extends VisionProcessorBase<FirebaseV
 
     private final FirebaseVisionTextRecognizer detector;
 
+    private final String LOCALHOST_IP = "";
+
     public CloudTextRecognitionProcessor() {
         super();
 

@@ -27,6 +27,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".StillImageActivity"/>
+        <activity android:name=".QuestionActivity" />
+
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr,ica" />
